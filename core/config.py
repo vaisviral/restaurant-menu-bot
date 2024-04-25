@@ -24,7 +24,7 @@ class SettingsDB(BaseSettings):
         if isinstance(value, str):
             return value
         return pd.PostgresDsn.build(
-            scheme="postgresql",
+            scheme="postgresql+asyncpg",
             username=values.data.get("POSTGRESQL_USER"),
             password=values.data.get("POSTGRESQL_PASSWORD"),
             host=values.data.get("POSTGRESQL_HOST"),
@@ -35,5 +35,3 @@ class SettingsDB(BaseSettings):
 
 settings_db = SettingsDB(_env_file="../.env")
 settings_db_test = SettingsDB(_env_file="../test_db.env")
-print(f"{settings_db.DATABASE_URI.unicode_string()}")
-print(f"{settings_db_test.DATABASE_URI.unicode_string()}")
