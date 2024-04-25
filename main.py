@@ -1,8 +1,5 @@
 from fastapi import FastAPI
+from routes.api import setup_routes
 
 app = FastAPI()
-
-
-@app.get("/")
-async def read_root():
-    return {"msg": "Hi"}
+setup_routes(app)
